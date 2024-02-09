@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact-us</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/css/intlTelInput.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/intlTelInput.min.js"></script>
+</head>
+<style>
+    .iti__country-list {
+    width: 220px;
+    overflow-x: hidden;
+    background-color: white;
+}
+.iti {
+    width: 100%;
+}
+.invalid {
+      border-color: red !important;
+  }
+
+</style>
+<body>
+    <div id="wrapper">
+        <div class="container">
+            <div class="box row align-items-center justify-content-center p-3">
+                <div class="col-lg-10 text-center">
+                    <h1 class="my-3 fw-bold">Want to work with us: Talk to us in <br>person</h1>
+                </div>
+                <div class="col-lg-4 text-center" style="margin-right: 25px;">
+                    <img src="contact.png" alt="photo" class="img-fluid">
+                </div>
+                <div class="col-lg-4 shadow p-4 bg-body">
+                    <!-- form with validation -->
+                    <form class="row g-3 needs-validation" novalidate>
+                        <div class="col-12">
+                            <!-- <label for="validationName" class="form-label">Name</label> -->
+                            <input type="text" class="form-control verify" id="validationName" placeholder="Name" required >
+                            <div style="color: red;"></div>
+                        </div>
+                        <div class="col-12">
+                            <!-- <label for="validationEmail" class="form-label">Email</label> -->
+                            <input type="email" class="form-control verify" id="vaildationEmail" placeholder="Email" required>
+                            <div style="color: red;"></div>    
+                        </div>
+                        <div class="col-12">
+                            <select class="form-select" aria-label="Budget Range">
+                                <option selected >Budget Range</option>
+                                <option value="1">Less than $10K</option>
+                                <option value="2">Between $10K to $20K</option>
+                                <option value="3">Between $20K to $30K</option>
+                                <option value="4">Between $30K to $40K</option>
+                            </select>
+                        </div>
+                        <div class="col-12">
+                            <div class="input-group">
+                                <input type="hidden" id="country-code" name="country_code">
+                                <input type="tel" class="form-control" id="phone-no" name="phone_no" style="padding-left: 0px;" placeholder="Phone number">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <!-- <label for="validationEmail" class="form-label">SkypeID</label> -->
+                            <input type="skypeid" class="form-control" id="SkypeID" placeholder="SkypeID" required>  
+                        </div>
+                        <div class="col-12">
+                            <!-- <label for="validation_message" class="form-label">Message</label> -->
+                            <textarea class="form-control verify" placeholder="Leave a message here" id="validation_message" required style="height: 100px"></textarea>
+                            <div style="color: red;"></div>  
+                        </div>
+                        <div class="col-12 mb-3" style="padding: 8;">
+                            <br>
+                            <br>
+                            <input type="checkbox" value="" id="flexCheckDefault">
+                            <label for="flexCheckDefault">
+                              Send me a copy of NDA
+                            </label>
+                        </div>
+                        <div class="col-12">
+                            <button class="btn btn-primary" type="submit" style="width: 100%" id="submit">Send
+                            </button>
+                        </div>
+                    </form>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const submit = document.getElementById("submit");
+        submit.addEventListener('click', validate);
+        function validate(e){
+          e.preventDefault();
+          const to_verify = document.getElementsByClassName("verify");
+
+          Array.from(to_verify).forEach(verify => {
+            const error_msg = verify.nextElementSibling;
+            if(!verify.checkValidity()){
+            //  verify.classList
+              error_msg.textContent ="This field is required";
+              verify.classList.add("invalid");
+            }
+            else{
+              error_msg.textContent =" ";
+              verify.classList.remove('invalid'); 
+            }
+          });
+        }
+  </script>
+</body>
+</html>
+<script>
+var input = document.querySelector("#phone-no");
+var iti = window.intlTelInput(input, {
+    separateDialCode: true,
+});
+</script>

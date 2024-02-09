@@ -1,0 +1,22 @@
+#wrapper {
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+}
+.box {
+    height: 300px;
+    width: 30vw;
+}
+.btn{
+    background-color: rgba(113,44,248,255);
+    color: white;
+}
+.loginpart {
+    height: 100%;
+}
+.rightside{
+    background-color: rgba(113,44,248,255);
+}
+
+

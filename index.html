@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendence</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</head>
+<style>
+    .navbar-brand,.navbar-brand:hover{
+        color: white;
+    }
+    .btn{
+        --bs-btn-line-height: 1;
+    }
+    /* .modal{
+        --bs-modal-width: px;
+    } */
+    .modal-dialog{
+        margin: 0;
+        float: right;
+        margin-top: 50px;
+        margin-right: 10px;
+    }
+    .message_time{
+        font-size: 12px;
+    }
+    .unread_meassage{
+        height: 10px;
+        width: 10px;
+        margin-top: 15px;
+        padding: 0;
+    }
+    .on_hover:hover{
+        background-color: lightgray;
+    }
+    .btn-primary{
+        --bs-btn-bg: #2d3642;
+        --bs-btn-border-color: #2d3642;
+        --bs-btn-hover-bg: #20212c;
+    }
+    .modal-dialog-scrollable, .modal-content{
+        max-height: 45%;
+    }
+</style>
+<body>
+    <div id="wrapper">
+        <!-- navbar -->
+        <nav class="navbar fixed-top">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">CollegeERP</a>
+                <!-- <a href="/bootstrap/index.html">Login</a> -->
+                <span class="rounded-circle notification position-relative" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                    <img src="bell.png" alt="" class="position-absolute">
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-circle bg-danger">
+                        2
+                        <span class="visually-hidden">unread messages</span>
+                      </span>
+                </span>
+            </div>
+        </nav>
+        <!-- notification-modal -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="staticBackdropLabel">Notifications</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row on_hover rounded p-1">
+                        <img src="user4.jpeg" alt="user" class="col-2 rounded-circle" style="cursor: pointer;">
+                        <div class="col-10 row justify-content-between" style="height: 57.66px; overflow: auto;">
+                            <div class="col-11">You have a new message from anonymous
+                            </div>
+                            <div class="col-1 bg-danger rounded-circle unread_meassage"></div>
+                            <div class="col-12 message_time">Just now</div>
+                        </div>    
+                    </div>
+                    <div class="row mt-2 on_hover rounded p-1">
+                        <img src="user2.jpeg" alt="user" class="col-2 rounded-circle" style="cursor: pointer;">
+                        <div class="col-10 row justify-content-between" style="height: 57.66px; overflow: auto;">
+                            <div class="col-11">You have a new message from anonymous
+                            </div>
+                            <div class="col-1 bg-danger rounded-circle unread_meassage"></div>
+                            <div class="col-12 message_time">10 minutes ago</div>
+                        </div>    
+                    </div>
+                    <div class="row mt-2 on_hover rounded p-1">
+                        <img src="user3.jpeg" alt="user" class="col-2 rounded-circle" style="cursor: pointer;">
+                        <div class="col-10 row justify-content-between" style="height: 57.66px; overflow: auto;">
+                            <div class="col-12">You have a new message from anonymous
+                            </div>
+                            <div class="col-12 message_time">1 day ago</div>
+                        </div>    
+                    </div>
+                    <div class="row mt-2 on_hover rounded p-1">
+                        <img src="user1.jpeg" alt="user" class="col-2 rounded-circle" style="cursor: pointer;">
+                        <div class="col-10 row justify-content-between" style="height: 57.66px; overflow: auto;">
+                            <div class="col-12">You have a new message from anonymous
+                            </div>
+                            <div class="col-12 message_time">4 day ago</div>
+                        </div>    
+                    </div>
+                    
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Mark all as read</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <a href="#home">Home</a>
+            <a href="#attendence">Attendence</a>
+            <a href="#marks">Marks</a>
+            <!-- <a href="#" onclick="openModel()">Add Student</a> -->
+            <span data-bs-toggle="modal" data-bs-target="#exampleModalCenter">Add Student</span>
+            <a href="/contactus/index.html">Contact-Us</a>
+
+        </div>
+        <!-- modal without bootstrap -->
+        <!-- <div id="add_student" class="modal">
+            <span onclick="closeModel()" class="close" title="Close Modal">x</span>
+            <form action="" class="model-content">
+                <div class="box">
+                    <label for="std_name">Name :</label>
+                    <input type="text" id="std_name">
+                    <br>
+                    <br>
+                    <label for="std_email">Email : </label>
+                    <input type="email" id="std_email">
+                    <br>
+                    <br>
+                    <label for="std_course">Course : </label>
+                    <select id="std_course" onchange="selectFn()">
+                        <option selected>Select</option>
+                        <option value="medical">Medical</option>
+                        <option value="non-medical"> Non- Medical</option>
+                    </select>
+                    <br>
+                    <br>
+                    <label for="std_subject">Subject : </label>
+                    <input type="text" id="std_subject" value="">
+                    <div class="clearfix">
+                        <br>
+                        <br>
+                        <button type="button" onclick="closeModel()" class="cancelbtn">Cancel</button>
+                        <button type="sumbit" onclick="closeModel()" class="addbtn">Add Student</button>
+                    </div>
+
+                </div>
+            </form>
+        </div> -->
+        <!-- model with bootstrap -->
+        
+        <!-- Main-content -->
+        <div class="main-content">
+            <table class="table table-bordered">
+                <thead>
+                  <tr class="">
+                    <th scope="col">Student name</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Himanshu</td>
+                    <td>
+                        <form action="">
+                            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                <input type="radio" class="btn-check" name="btnradio" id="std1p" autocomplete="off" checked>
+                                <label class="btn btn-outline-success" for="std1p">Present</label>
+                              
+                                <input type="radio" class="btn-check" name="btnradio" id="std1ab" autocomplete="off">
+                                <label class="btn btn-outline-danger" for="std1ab">Absent</label>
+                            </div>
+                        </form>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Arpit</td>
+                    <td>
+                        <form action="">
+                            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                <input type="radio" class="btn-check" name="btnradio" id="std2p" autocomplete="off" checked>
+                                <label class="btn btn-outline-success" for="std2p">Present</label>
+                              
+                                <input type="radio" class="btn-check" name="btnradio" id="std2ab" autocomplete="off">
+                                <label class="btn btn-outline-danger" for="std2ab">Absent</label>
+    
+                            </div>
+                        </form>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Kartik</td>
+                    <td>
+                        <form action="">
+                            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                <input type="radio" class="btn-check" name="btnradio" id="std3p" autocomplete="off" checked>
+                                <label class="btn btn-outline-success" for="std3p">Present</label>
+                              
+                                <input type="radio" class="btn-check" name="btnradio" id="std3ab" autocomplete="off">
+                                <label class="btn btn-outline-danger" for="std3ab">Absent</label>
+    
+                            </div>
+                        </form>
+                    </td>
+                  </tr>
+                  <td>Harshit</td>
+                    <td>
+                        <form action="">
+                            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                <input type="radio" class="btn-check" name="btnradio" id="std4p" autocomplete="off" checked>
+                                <label class="btn btn-outline-success" for="std4p">Present</label>
+                              
+                                <input type="radio" class="btn-check" name="btnradio" id="std4ab" autocomplete="off">
+                                <label class="btn btn-outline-danger" for="std4ab">Absent</label>
+                            </div>
+                        </form>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Yash</td>
+                    <td>
+                        <form action="">
+                            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                <input type="radio" class="btn-check" name="btnradio" id="std5p" autocomplete="off" checked>
+                                <label class="btn btn-outline-success" for="std5p">Present</label>
+                              
+                                <input type="radio" class="btn-check" name="btnradio" id="std5ab" autocomplete="off">
+                                <label class="btn btn-outline-danger" for="std5ab">Absent</label>
+    
+                            </div>
+                        </form>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Rishik</td>
+                    <td>
+                        <form action="">
+                            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                <input type="radio" class="btn-check" name="btnradio" id="std6p" autocomplete="off" checked>
+                                <label class="btn btn-outline-success" for="std6p">Present</label>
+                              
+                                <input type="radio" class="btn-check" name="btnradio" id="std6ab" autocomplete="off">
+                                <label class="btn btn-outline-danger" for="std6ab">Absent</label>
+    
+                            </div>
+                        </form>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Yasharth</td>
+                    <td>
+                        <form action="">
+                            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                <input type="radio" class="btn-check" name="btnradio" id="std7p" autocomplete="off" checked>
+                                <label class="btn btn-outline-success" for="std7p">Present</label>
+                              
+                                <input type="radio" class="btn-check" name="btnradio" id="std7ab" autocomplete="off">
+                                <label class="btn btn-outline-danger" for="std7ab">Absent</label>
+                            </div>
+                        </form>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Nikhil</td>
+                    <td>
+                        <form action="">
+                            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                <input type="radio" class="btn-check" name="btnradio" id="std8p" autocomplete="off" checked>
+                                <label class="btn btn-outline-success" for="std8p">Present</label>
+                              
+                                <input type="radio" class="btn-check" name="btnradio" id="std8ab" autocomplete="off">
+                                <label class="btn btn-outline-danger" for="std8ab">Absent</label>
+    
+                            </div>
+                        </form>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Dhruv</td>
+                    <td>
+                        <form action="">
+                            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                <input type="radio" class="btn-check" name="btnradio" id="std9p" autocomplete="off" checked>
+                                <label class="btn btn-outline-success" for="std9p">Present</label>
+                              
+                                <input type="radio" class="btn-check" name="btnradio" id="std9ab" autocomplete="off">
+                                <label class="btn btn-outline-danger" for="std9ab">Absent</label>
+    
+                            </div>
+                        </form>
+                    </td>
+                  </tr>
+                  <td>Mridul</td>
+                    <td>
+                        <form action="">
+                            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                <input type="radio" class="btn-check" name="btnradio" id="std10p" autocomplete="off" checked>
+                                <label class="btn btn-outline-success" for="std10p">Present</label>
+                              
+                                <input type="radio" class="btn-check" name="btnradio" id="std10ab" autocomplete="off">
+                                <label class="btn btn-outline-danger" for="std10ab">Absent</label>
+                            </div>
+                        </form>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Shikhar</td>
+                    <td>
+                        <form action="">
+                            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                <input type="radio" class="btn-check" name="btnradio" id="std11p" autocomplete="off" checked>
+                                <label class="btn btn-outline-success" for="std11p">Present</label>
+                              
+                                <input type="radio" class="btn-check" name="btnradio" id="std11ab" autocomplete="off">
+                                <label class="btn btn-outline-danger" for="std11ab">Absent</label>
+    
+                            </div>
+                        </form>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Manan</td>
+                    <td>
+                        <form action="">
+                            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                <input type="radio" class="btn-check" name="btnradio" id="std12p" autocomplete="off" checked>
+                                <label class="btn btn-outline-success" for="std12p">Present</label>
+                              
+                                <input type="radio" class="btn-check" name="btnradio" id="std12ab" autocomplete="off">
+                                <label class="btn btn-outline-danger" for="std12ab">Absent</label>
+    
+                            </div>
+                        </form>
+                    </td>
+                  </tr>
+                  <tr>
+                  <td>Vasu</td>
+                    <td>
+                        <form action="">
+                            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                <input type="radio" class="btn-check" name="btnradio" id="std13p" autocomplete="off" checked>
+                                <label class="btn btn-outline-success" for="std13p">Present</label>
+                              
+                                <input type="radio" class="btn-check" name="btnradio" id="std13ab" autocomplete="off">
+                                <label class="btn btn-outline-danger" for="std13ab">Absent</label>
+                            </div>
+                        </form>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Amit</td>
+                      <td>
+                          <form action="">
+                              <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                  <input type="radio" class="btn-check" name="btnradio" id="std14p" autocomplete="off" checked>
+                                  <label class="btn btn-outline-success" for="std14p">Present</label>
+                                
+                                  <input type="radio" class="btn-check" name="btnradio" id="std14ab" autocomplete="off">
+                                  <label class="btn btn-outline-danger" for="std14ab">Absent</label>
+                              </div>
+                          </form>
+                      </td>
+                    </tr>
+                    <tr>
+                        <td>Aditi</td>
+                          <td>
+                              <form action="">
+                                  <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                      <input type="radio" class="btn-check" name="btnradio" id="std15p" autocomplete="off" checked>
+                                      <label class="btn btn-outline-success" for="std15p">Present</label>
+                                    
+                                      <input type="radio" class="btn-check" name="btnradio" id="std15ab" autocomplete="off">
+                                      <label class="btn btn-outline-danger" for="std15ab">Absent</label>
+                                    </div>
+                              </form>
+                          </td>
+                    </tr>
+                    <tr>
+                        <td>Shivangi</td>
+                          <td>
+                              <form action="">
+                                  <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                      <input type="radio" class="btn-check" name="btnradio" id="std16p" autocomplete="off" checked>
+                                      <label class="btn btn-outline-success" for="std16p">Present</label>
+                                    
+                                      <input type="radio" class="btn-check" name="btnradio" id="std16ab" autocomplete="off">
+                                      <label class="btn btn-outline-danger" for="std16ab">Absent</label>
+                                    </div>
+                              </form>
+                          </td>
+                    </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>
+</body>
+</html>
